@@ -1,0 +1,10 @@
+# ma-libjcrypto
+
+Criar m�dulo dentro da instala��o do Wildfly.
+1) Copiar o jar gerado + o arquivo module.xml que se encontram no
+target e neste diret�rio, respectivamente.
+2) Criar a estrutura de pastas /br/com/dojot/libjcrypto dentro da
+pasta de m�dulos de wildfly.
+3) Para cada ear que precisa usar as funcionalidades dessa biblioteca,
+adicionar no pom uma entrada de "dependency" com "scope provided" e
+na se��o do maven-ear-plugin adicionar o <Dependencies>br.com.dojot.libjcrypto</Dependencies>
