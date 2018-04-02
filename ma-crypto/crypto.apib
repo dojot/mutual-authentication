@@ -1,0 +1,110 @@
+FORMAT: 1A
+
+# Crypto
+
+Crypto offers a secure channel so applications can communicate safely between each other.
+
+## Data Structures
+
+### `Data no-CC` (object)
++ data: Clear or cipher data (string)
++ tagSize: 16 (number)
++ key: 2034F6E32958647FDFF75D265B455EBF40C80E6D597092B3A802B3E5863F878C (string)
++ iv: AD0ACC568C88C116D57B273D98FB92C0 (string)
+
+### Data CC (object)
++ sessionId: 7ae76bf2bb4c4dc3cdffda3c5e37c9e4 (string)
++ data: Clear or cipher data (string)
+
+### Crypto Reply (object)
++ data: Cipher or clear data (string)
++ result: SUCCESS (string)
+
+### CC Registry (object)
++ provider: (string)
++ transactionId: (string)
++ lifespan: (number)
++ ivServerToComponent: (string)
++ keyServerToComponent: (string)
++ sessionId: (string)
++ keyComponentToServer: (string)
++ ivComponentToServer: (string)
++ tagLen: (number)
+
+# Group Health
+
+Health can obtain Crypto status information
+
+### Status [/health/status]
+
+#### Get Crypto healh status [GET]
+
++ Response 200
+
+
+# Group Crypto functions
+
+### Decrypt without using CC [/crypto/decrypt]
+
+#### Decrypt [POST]
++ Request (application/json)
+    + Attributes (Data no-CC)
+
++ Response 200 (application/json)
+    + Attributes (Crypto Reply)
+
+
+### Encrypt without using CC [/crypto/encrypt]
+
+#### Encrypt [POST]
++ Request (application/json)
+    + Attributes (Data no-CC)
+
++ Response 200 (application/json)
+    + Attributes (Crypto Reply)
+
+
+### Decrypt using CC [/crypto/decryptWithCC]
+
+#### Decrypt [POST]
++ Request (application/json)
+    + Attributes (Data CC)
+
++ Response 200 (application/json)
+    + Attributes (Crypto Reply)
+
+
+### Encrypt using CC [/crypto/encryptWithCC]
+
+#### Encrypt [POST]
++ Request (application/json)
+    + Attributes (Data CC)
+
++ Response 200 (application/json)
+    + Attributes (Crypto Reply)
+
+
+### Register new CC [/crypto/registerCC]
+
+#### Register [POST]
++ Request (application/json)
+    + Attributes (CC Registry)
+
++ Response 200 (application/json)
+
+        {
+            "result" : "SUCCESS"
+        }
+
+
+### Unregister existing CC [/crypto/unregisterCC]
+
+#### Unregister [POST]
++ Request (application/json)
++ Attributes (CC Registry)
+
++ Response 200 (application/json)
+
+        {
+            "result" : "SUCCESS"
+        }

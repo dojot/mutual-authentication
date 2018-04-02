@@ -1,0 +1,110 @@
+FORMAT: 1A
+
+# Kerberos
+
+Kerberos is a mutual authentication protocol that uses tickets to allow entities communicating over a non-secure network.
+
+## Data Structures
+
+### Kerberos Request (object)
++ request: 0adeadbeefdeadbeefa3a66aa8cb7caa39030303030303030303030303030303037658250a(string)
++ transactionId: 3998beec2b484d42cdbbd088ed1fec29 (string)
++ sessionId: 7ae76bf2bb4c4dc3cdffda3c5e37c9e4 (string)
+
+### Kerberos Reply (object)
++ kerberosReply: 0BDEADBEEFDEADBEEFA3A66AA8CB7CAA39030303030303030303030303030303030C6A51EA9A74BBD7F (string)
++ description: CS-CCS-000 (string)
+
+### appRegistry (object)
++ id: 0001020304050607 (string)
++ key: 000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f (string)
+
+### sessionRegistry (object)
++ sessionId: 3998beec2b484d42cdbbd088ed1fec29 (string)
++ transactionId: 7ae76bf2bb4c4dc3cdffda3c5e37c9e4 (string)
+
+
+# Group Health
+
+Health can obtain Kerberos status information
+
+### Status [/health/status]
+
+#### Get Kerberos healh status [GET]
+
++ Response 200
+
+# Group Protocol
+
+Protocol defines APIs used to perform mutual authentication
+
+## RequestAP [/protocol/requestAP]
+
+### Send request [POST]
++ Request (application/json)
+    + Attributes (Kerberos Request)
+
++ Response 200 (application/json)
+    + Attributes (Kerberos Reply)
+
+## RequestAS [/protocol/requestAS]
+
+### Send request [POST]
++ Request (application/json)
+    + Attributes (Kerberos Request)
+
++ Response 200 (application/json)
+    + Attributes (Kerberos Reply)
+
+
+# Group Registry
+
+This API registers and unregisters apllications and Kerberos sessions.
+
+## Register Application [/registry/registerComponent]
+
+### Register new application [POST]
++ Request (application/json)
+    + Attributes (appRegistry)
+
++ Response 200 (application/json)
+
+        {
+            "result" : "true"
+        }
+
+## Unregister Application [/registry/unregisterComponent]
+
+### Delete application registry [POST]
++ Request (application/json)
+    + Attributes (appRegistry)
+
++ Response 200 (application/json)
+
+        {
+            "result" : "true"
+        }
+
+## Register Session [/registry/registerSession]
+
+### Register new session [POST]
++ Request (application/json)
+    + Attributes (sessionRegistry)
+
++ Response 200 (application/json)
+
+        {
+            "result" : "true"
+        }
+
+## Unregister Session [/registry/unregisterSession]
+
+### Delete session registry [POST]
++ Request (application/json)
+    + Attributes (sessionRegistry)
+
++ Response 200 (application/json)
+
+        {
+            "result" : "true"
+        }
